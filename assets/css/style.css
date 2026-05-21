@@ -1,0 +1,112 @@
+/* --------------------------------------------------
+ * Seowoo Construction Custom Styles & 3D Transitions
+ * -------------------------------------------------- */
+
+/* Smooth scroll for anchor link navigation */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Typography settings for maximum legibility */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 3D Perspective Setup */
+.perspective-container {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* Child element translation on Z-axis for 3D pop out effect */
+.preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.transform-3d {
+    transform: translateZ(40px);
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Floating animation for Hero 3D illustration */
+@keyframes float-3d {
+    0%, 100% {
+        transform: translateY(0px) rotateX(1deg) rotateY(-1deg);
+        box-shadow: 0 25px 50px -12px rgba(0, 81, 87, 0.25);
+    }
+    50% {
+        transform: translateY(-12px) rotateX(-1deg) rotateY(1deg);
+        box-shadow: 0 35px 60px -10px rgba(0, 81, 87, 0.35);
+    }
+}
+
+.tilt-card[data-tilt] {
+    /* Apply gentle hover floating effect when idle on desktop */
+    animation: float-3d 6s ease-in-out infinite;
+}
+
+.tilt-card[data-tilt]:hover {
+    /* Pause float animation when user actively tilts the card */
+    animation-play-state: paused;
+}
+
+/* 3D Scroll Reveal Effect */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px) rotateX(8deg);
+    transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+}
+
+/* Animation Delays for Staggered Reveal */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Custom Glassmorphism Styling */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass-panel {
+    background: rgba(26, 28, 30, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Contact success modal overlay anim states */
+#success-modal.show {
+    opacity: 1;
+}
+
+#success-modal.show > div.relative {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Navigation scroll transitions */
+nav.scrolled {
+    background-color: rgba(249, 249, 252, 0.95);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    height: 4.5rem; /* Shrinks slightly from h-20 (5rem) */
+}
+
+nav.scrolled .flex {
+    height: 4.5rem;
+}
